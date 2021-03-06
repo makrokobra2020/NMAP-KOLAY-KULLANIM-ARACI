@@ -11,25 +11,18 @@ os.system("clear")
 os.system("figlet MAKRO")
 
 
-
-print("""Nmap pratik programına hoş geldiniz (nmap yazısından sonrakiler örnektir siz oraya hedef ip veya domain girin)
-
-
-""")
+print("""Nmap pratik programına hoş geldiniz
 
 
-
-print("""
 1)Kısa Tarama
 2)Port tarama
 3)Agresif tarama
-4)Hızlı Tarama
-5)Gizli Tarama(mac adres)
-6)Gizli Tarama(İP adres)
-7)Hedef İşletim sistemini Öğrenme
-8)Hedef Servis Sürümleni Öğrenme
-9)Firewall Algılama
-10)Firewall Atlatma
+4)Gizli Tarama(mac adres)
+5)Gizli Tarama(İP adres)
+6)Hedef İşletim sistemini Öğrenme
+7)Hedef Servis Sürümleni Öğrenme
+8)Hedef Filitreleme Tespiti
+9)Firewall Atlatma
 
 """)
 
@@ -38,37 +31,62 @@ secim = raw_input("Lütfen Seçim Yapınız: ")
 
 
 if(secim=="1"):
-	print("""nmap 12.23.56.87""")
+	hedef = raw_input("Lütfen Hedef IP Giriniz: ")
+	os.system("nmap "+ hedef)
+	print("""
+Terminalde Kullanımı İçin: nmap + hedef""")
+
 elif(secim=="2"):
-	print("""nmap  örnek.com -sS -sV""")
+	hedef = raw_input("Lütfen Hedef IP Giriniz: ")	
+	os.system("nmap -sS -sV "+hedef )
+	print("""
+Terminalde Kullanımı İçin: nmap -sS -sV + hedef""")
+
 elif(secim=="3"):
-	print("nmap örnek.com -A")
+	hedef = raw_input("Lütfen Hedef IP Giriniz: ")
+	os.system("nmap -A "+hedef )
+	print("""
+Terminalde Kullanımı İçin: nmap -A hedef""")
 elif(secim=="4"):
-	print("""nmap örnek.com -F """)
+	hedef = raw_input("Lütfen Hedef IP Giriniz: ")
+	os.system("nmap 10.0.2.15 --spoof-mac 00:0B:DB:82:58:C3 "+ hedef)
+	print("""
+Terminalde Kullanımı İçin: nmap --spoof-mac + MAC + hedef""")
 elif(secim=="5"):
-	print("""nmap örnek.com --spoof-mac 12:34:56:78:89 """)
+	hedef = raw_input("Lütfen Hedef IP Giriniz: ")
+	os.system("nmap -D 77.245.159.2 " + hedef)
+	print("""
+Terminalde Kullanımı İçin: nmap -D + sahte IP + hedef""")
 elif(secim=="6"):
-	print("""nmap örnek.com -D 123.12.456.78 """)
+	hedef = raw_input("Lütfen Hedef IP Giriniz: ")
+	os.system("nmap -sS "+ hedef)
+	print("""
+Terminalde Kullanımı İçin: nmap -sS + hedef""")
 elif(secim=="7"):
-	print("nmap örnek.com -O")
+	hedef = raw_input("Lütfen Hedef IP Giriniz: ")
+	os.system("nmap -sV "+ hedef)
+	print("""
+Terminalde Kullanımı İçin: nmap -sV + hedef""")
 elif(secim=="8"):
-	print("nmap örnek.com -sV")
+	hedef = raw_input("Lütfen Hedef IP Giriniz: ")
+	os.system("nmap -sA "+ hedef)
+
+	print("""
+Terminalde Kullanımı İçin: nmap -sA + hedef""")
 elif(secim=="9"):
-	print("""nmap örnek.com -sA """)
-elif(secim=="10"):
-	print("""nmap örnek.com -f (-f parametresini nekadar çok yazarsanız okadar atlatır ama bekletir:D)""")
-
-
-
+	hedef = raw_input("Lütfen Hedef IP Giriniz: ")
+	os.system("nmap -f -f "+ hedef)
+	print("""
+	Terminalde Kullanımı İçin: nmap -f -f + hedef (-f parametresi firewallı daha kolay atlatmayı sağlar ama tarama süresini uzatır)""")
 else:
 	print("Hatlı Seçim Yeniden Dene")
 
-tek = raw_input("Programdan Çıkılsın mı? y/n: ")
+tek = raw_input("Tekrar Tarama Yapmak İstermisin y/n: ")
 
 if(tek=="y"):
-	print("Güle Güle")
+	os.system("python Nmap_Pratik_Kullanım.py")
 
 elif(tek=="n"):
-	os.system("python Nmap_Pratik_Kullanım.py")
+	print("Tekrar Görüşmek Üzere")
 else:
 	print("Yanlış Seçim Program Kapatılıyor")
